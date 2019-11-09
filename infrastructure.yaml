@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A sample template
+Resources:
+  Repository:
+    Type: AWS::CodeCommit::Repository
+    Properties: 
+      # Might need it later to fill with some meaningful tempalte
+      # Code: 
+        # Code
+      RepositoryDescription: This is a aws-quick-start demo app
+      RepositoryName: aws.demo
+  
