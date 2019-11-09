@@ -7,6 +7,6 @@ Resources:
       # Might need it later to fill with some meaningful tempalte
       # Code: 
         # Code
-      RepositoryDescription: This is a aws-quick-start demo app
-      RepositoryName: aws.demo
+      RepositoryDescription: This is a aws-quick-start demo app repository
+      RepositoryName: aws-quick-start-app
   

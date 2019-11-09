@@ -6,8 +6,22 @@
 
 ## Create CodeCommit Repo
 
+Create infrastructure
+
 ```
 aws2 cloudformation deploy --stack-name aws-demo-infrastructure --template-file infrastructure.yaml
+```
+
+Get your repo URL
+```
+aws2 codecommit get-repository --repository-name aws-quick-start-app --query repositoryMetadata.cloneUrlHttp --output text
+```
+
+Access your app Git repo
+```
+git config --global credential.helper '!aws codecommit credential-helper $@'
+git config --global credential.UseHttpPath true
+git clone <repo_url>
 ```
 
 # Manual Steps
