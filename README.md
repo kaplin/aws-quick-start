@@ -1,8 +1,8 @@
 # Using CloudFormation Template
 
 ## Prereqisites 
-AWS CLI 2 https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html
-GIT https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-gc.html?icmpid=docs_acc_console_connect_np#setting-up-gc-install-git 
+* AWS CLI 2 https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html
+* GIT https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-gc.html?icmpid=docs_acc_console_connect_np#setting-up-gc-install-git 
 
 ## Create CodeCommit Repo
 
