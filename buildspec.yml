@@ -6,4 +6,5 @@ phases:
       - mkdir seed-target && cp app/* seed-target
 artifacts:
   files:
-    - seed-target/*
+    - '*'
+  base-directory: seed-target
