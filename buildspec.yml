@@ -3,4 +3,4 @@ version: 0.2
 artifacts:
   files:
     - '*'
-  base-directory: app
+  base-directory: seed
