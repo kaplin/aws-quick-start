@@ -1,12 +1,16 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: A sample template
+Description: Aws-quick-start demo application infrastruture
 Resources:
   Repository:
     Type: AWS::CodeCommit::Repository
     Properties: 
-      # Might need it later to fill with some meaningful tempalte
-      # Code: 
-        # Code
+      Code: 
+        S3:
+          # todo make it publicly available
+          Bucket: aws-quick-start
+          Key: app.zip
       RepositoryDescription: This is a aws-quick-start demo app repository
       RepositoryName: aws-quick-start-app
+  StaticWebResources:
+    Type: AWS::S3::Bucket
   
