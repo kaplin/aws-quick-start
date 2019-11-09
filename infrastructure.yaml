@@ -8,7 +8,7 @@ Resources:
         S3:
           # todo make it publicly available
           Bucket: aws-quick-start
-          Key: app.zip
+          Key: seed.zip
       RepositoryDescription: This is a aws-quick-start demo app repository
       RepositoryName: aws-quick-start-app
   StaticWebResources:
