@@ -1,13 +1,13 @@
 # Using CloudFormation Template
 
 ## Prereqisites 
-* AWS CLI 2 https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html
-* GIT https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-gc.html?icmpid=docs_acc_console_connect_np#setting-up-gc-install-git 
+* [AWS CLI 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
+* [GIT](https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-gc.html?icmpid=docs_acc_console_connect_np#setting-up-gc-install-git)
 
 ## Create CodeCommit Repo
 
 ```
-aws2 cloudformation create-stack --stack-name aws-demo-infrastructure --template-body "`cat infrastructure.yaml`"
+aws2 cloudformation deploy --stack-name aws-demo-infrastructure --template-file infrastructure.yaml
 ```
 
 # Manual Steps
