@@ -17,7 +17,7 @@ Get your repo URL
 aws2 codecommit get-repository --repository-name aws-quick-start-app --query repositoryMetadata.cloneUrlHttp --output text
 ```
 
-Access your app Git repo
+Access your app Git repo (read more about git credentials helper [here](https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-https-unixes.html#setting-up-https-unixes-credential-helper))
 ```
 git config --global credential.helper '!aws codecommit credential-helper $@'
 git config --global credential.UseHttpPath true
