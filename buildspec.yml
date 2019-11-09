@@ -1,5 +1,9 @@
 version: 0.2
 
+phases:
+ build:
+    commands:
+      - mkdir seed-target && cp app/* seed-target
 artifacts:
   files:
-    - app/*
+    - seed-target/*
