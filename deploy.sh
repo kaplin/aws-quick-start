@@ -1,0 +1,1 @@
+aws2 cloudformation deploy --stack-name aws-quick-start --template-file infrastructure.yaml --capabilities CAPABILITY_IAM
