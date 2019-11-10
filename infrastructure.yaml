@@ -15,23 +15,43 @@ Resources:
   
   StaticWebResourcesBucket:
     Type: AWS::S3::Bucket
+
+  ArtifactStoresBucket:
+    Type: AWS::S3::Bucket
   
   # See https://docs.aws.amazon.com/codepipeline/latest/userguide/how-to-custom-role.html
   CodePipelineServiceRole:
-    Type: 'AWS::IAM::Role'
+    Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: "2012-10-17"
+        Version: 2012-10-17
         Statement:
-          - Effect: "Allow"
+          - Effect: Allow
             Principal:
               Service:
-                - "codepipeline.amazonaws.com"
+                - codepipeline.amazonaws.com
             Action:
-              - "sts:AssumeRole"
-  
-  ArtifactStoresBucket:
-    Type: AWS::S3::Bucket
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: aws-quick-start-builder-policy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - codecommit:CancelUploadArchive
+                  - codecommit:GetBranch
+                  - codecommit:GetCommit
+                  - codecommit:GetUploadArchiveStatus
+                  - codecommit:UploadArchive
+                Resource:
+                  Fn::GetAtt: [ Repository, Arn ]
+              - Effect: Allow
+                Action:
+                  - s3:*
+                Resource: 
+                  - !Sub ${ArtifactStoresBucket.Arn}/*
+                  - !Sub ${StaticWebResourcesBucket.Arn}/*
 
   Pipeline:
     Type: AWS::CodePipeline::Pipeline
@@ -55,7 +75,7 @@ Resources:
               Configuration:
                 BranchName: master
                 RepositoryName:
-                  Ref: Repository
+                  Fn::GetAtt: [ Repository, Name ]
               OutputArtifacts: 
                 - Name: SourceOutput 
         - Name: Deploy
