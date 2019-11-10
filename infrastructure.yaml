@@ -1,6 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: Aws-quick-start demo application infrastruture
 Resources:
+
   Repository:
     Type: AWS::CodeCommit::Repository
     Properties: 
@@ -11,6 +12,63 @@ Resources:
           Key: seed.zip
       RepositoryDescription: This is a aws-quick-start demo app repository
       RepositoryName: aws-quick-start-app
-  StaticWebResources:
+  
+  StaticWebResourcesBucket:
     Type: AWS::S3::Bucket
   
+  # See https://docs.aws.amazon.com/codepipeline/latest/userguide/how-to-custom-role.html
+  CodePipelineServiceRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service:
+                - "codepipeline.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+  
+  ArtifactStoresBucket:
+    Type: AWS::S3::Bucket
+
+  Pipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties: 
+      Name: aws-quick-start
+      ArtifactStore:
+        Type: S3 
+        Location:
+          Ref: ArtifactStoresBucket 
+      RoleArn: 
+        Fn::GetAtt: [ CodePipelineServiceRole, Arn ]
+      Stages: 
+        - Name: Source
+          Actions:
+            - Name: SourceAction
+              ActionTypeId: 
+                Category: Source 
+                Owner: AWS 
+                Version: 1 
+                Provider: CodeCommit
+              Configuration:
+                BranchName: master
+                RepositoryName:
+                  Ref: Repository
+              OutputArtifacts: 
+                - Name: SourceOutput 
+        - Name: Deploy
+          Actions:
+            - Name: DeployAction
+              InputArtifacts: 
+                - Name: SourceOutput
+              ActionTypeId: 
+                Category: Deploy 
+                Owner: AWS 
+                Version: 1 
+                Provider: S3
+              Configuration:
+                BucketName: 
+                  Ref: StaticWebResourcesBucket
+                Extract: true

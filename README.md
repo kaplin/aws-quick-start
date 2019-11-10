@@ -9,7 +9,7 @@
 Create infrastructure
 
 ```
-aws2 cloudformation deploy --stack-name aws-demo-infrastructure --template-file infrastructure.yaml
+aws2 cloudformation deploy --stack-name aws-quick-start-infrastructure --template-file infrastructure.yaml
 ```
 
 Get your repo URL
@@ -22,8 +22,4 @@ Access your app Git repo (read more about git credentials helper [here](https://
 git config --global credential.helper '!aws codecommit credential-helper $@'
 git config --global credential.UseHttpPath true
 git clone <repo_url>
-```
-
-```
-zip -r -j app.zip app/* && aws2 s3 cp app.zip s3://aws-quick-start
 ```
